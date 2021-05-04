@@ -2,6 +2,7 @@
 .DS_Store
 
 # python
+_env/
 env/
 __pycache__/
 *.pyc
