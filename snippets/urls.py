@@ -12,6 +12,8 @@ router.register(r'snippets', views.SnippetViewSet)
 router.register(r'users', views.UserViewSet)
 
 urlpatterns = [
+    path('v1/snippets/', views.snippet_list),
+    path('v1/snippets/<int:pk>', views.snippet_detail),
     path('', include(router.urls)),
 ]
 
