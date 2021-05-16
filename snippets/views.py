@@ -10,7 +10,7 @@ from rest_framework.views import APIView
 from rest_framework import generics, mixins, permissions
 from snippets.models import Snippet
 from snippets.permissions import IsOwnerOrReadOnly
-from snippets.serializers import SnippetSerializer, UserSerializer
+from snippets.serializers import SnippetBasicSerializer, SnippetSerializer, UserSerializer
 from rest_framework import renderers, viewsets
 
 
@@ -193,12 +193,12 @@ def snippet_api_view_detail(request, pk, format=None):
 def snippet_list(request):
     if request.method == 'GET':
         snippets = Snippet.objects.all()
-        serializer = SnippetSerializer(snippets, many=True)
+        serializer = SnippetBasicSerializer(snippets, many=True)
         return JsonResponse(serializer.data, safe=False)
 
     elif request.method == 'POST':
         data = JSONParser().parse(request)
-        serializer = SnippetSerializer(data=data)
+        serializer = SnippetBasicSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, status=201)
@@ -213,12 +213,12 @@ def snippet_detail(request, pk):
         return HttpResponse(status=400)
 
     if request.method == 'GET':
-        serializer = SnippetSerializer(snippet)
+        serializer = SnippetBasicSerializer(snippet)
         return JsonResponse(serializer.data)
 
     elif request.method == 'PUT':
         data = JSONParser().parse(request)
-        serializer = SnippetSerializer(snippet, data=data)
+        serializer = SnippetBasicSerializer(snippet, data=data)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data)
