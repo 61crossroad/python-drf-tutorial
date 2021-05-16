@@ -37,8 +37,8 @@ def get_property(key, file_name='properties.json'):
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = get_property('SECRET_KEY')
 SECRET_KEY = 'django-insecure-@yhe2vp4+9zu4^@0!0@_(va@0v7x*9o!^osbjoc35swrqqd@tx'
+# SECRET_KEY = get_property('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
